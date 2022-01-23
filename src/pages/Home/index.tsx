@@ -1,16 +1,17 @@
 import { Box } from "@mui/material";
 import MapComponent from "components/MapComponent";
-import SearchInput from "components/SearchInput";
+import Input from "components/Input";
 import React from "react";
-import { Container, SearchSection } from "./components";
+import { Container } from "./components";
 
 const Home: React.FC = () => {
 
   return (
     <Container>
-      <SearchSection>
-        <SearchInput />
-      </SearchSection>
+      <Input
+        placeholder="Search for gas stations"
+        onChange={() => { }}
+      />
       <MapComponent />
     </Container>
   );
