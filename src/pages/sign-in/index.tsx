@@ -8,17 +8,26 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { UserCredentials } from 'modules/auth/sign-in/models';
+import { login } from 'modules/auth/sign-in/services/signIn';
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const [credentials, setCredentials] = React.useState<UserCredentials>({
+    email: "",
+    password: ""
+  })
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    setCredentials({
+      email: data.get('email') as string,
+      password: data.get('password') as string,
     });
+
+    login(credentials)
   };
 
   return (
