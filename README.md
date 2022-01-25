@@ -28,7 +28,8 @@ npm start
 
 - [Typescript](https://www.typescriptlang.org/) - JS superset 
 - [React](https://reactjs.org/) - JS library
-- [Material UI](https://mui.com/pt/) - For components
+- [Material UI](https://mui.com/pt/) - UI components
+- [React Leaflet](https://react-leaflet.js.org/) - Map component
 
 ## Author
 
