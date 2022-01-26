@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-// import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L, { LatLngExpression, Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import './map.css'
@@ -22,7 +22,7 @@ function MapComponent() {
 
   return (
     <>
-      {/* <MapContainer center={position} zoom={15} scrollWheelZoom={true} whenCreated={setmap}>
+      <MapContainer center={position} zoom={15} scrollWheelZoom={true} whenCreated={setmap}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -30,7 +30,7 @@ function MapComponent() {
         <Marker position={position}>
 
         </Marker>
-      </MapContainer> */}
+      </MapContainer>
     </>
   );
 }

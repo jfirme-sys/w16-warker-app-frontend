@@ -10,7 +10,7 @@ const Container = styled(Box)(() => ({
   minWidth: '980px',
   maxWidth: '1440px',
   boxShadow: '3px 4px 20px 1px #00000050',
-  padding: '32px'
+  borderRadius: '14px'
 }))
 
 export { Container }

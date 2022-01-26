@@ -11,7 +11,7 @@ const Home: React.FC = () => {
       <Input
         placeholder="Search for gas stations"
         onChange={() => { }}
-        sx={{ width: '28rem' }}
+        sx={{ width: '28rem', margin: '16px 0' }}
       />
       <MapComponent />
     </Container>
