@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L, { LatLngExpression, Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import './map.css'
+import { GasStationsContext } from 'providers/gasStationsProvider';
 const icon = require('assets/marker-icon.png');
 const iconShadow = require('assets/marker-shadow.png');
 
@@ -14,6 +15,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function MapComponent() {
+  const { gasStations } = useContext(GasStationsContext)
   const position = [0, 0] as LatLngExpression
   const [map, setmap] = useState<Map>();
   if (map) {

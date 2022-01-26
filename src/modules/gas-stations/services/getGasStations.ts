@@ -1,13 +1,9 @@
 import axios from 'axios';
-import { AuthContext } from 'providers/authProvider';
-import { useContext } from 'react';
 
-
-const getGasStations = async (): Promise<any> => {
-  const { userData } = useContext(AuthContext)
+const getGasStations = async (userToken: string): Promise<any> => {
   const response = await axios.get("https://warker-api.herokuapp.com/api/posto/", {
     headers: {
-      Authorization: `Bearer ${userData.token}`
+      Authorization: `Bearer ${userToken}`
     }
   })
 
