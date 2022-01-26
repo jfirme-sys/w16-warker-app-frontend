@@ -1,19 +1,16 @@
 import axios from 'axios';
-import { UserCredentials } from '../models';
+import { UserCredentials, UserLoginResponse } from '../models';
 
-const token = process.env.REACT_APP_AUTH_TOKEN
 
-axios.defaults.withCredentials = true
-
-const login = async (credentials: UserCredentials) => {
+const login = async (credentials: UserCredentials): Promise<UserLoginResponse> => {
   const response = await axios.post("https://warker-api.herokuapp.com/api/login", 
-    credentials, {
-    headers: { 
-      'Authorization': `Bearer ${token}`, 
-      'Access-Control-Allow-Origin': '*'
-    }
-  })
-  console.log(response);
+    credentials
+  )
+  console.log(response)
+  return {
+    ...response.data,
+    status: response.status
+  }
 }
 
 export { login }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FormEvent, useContext } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -7,19 +7,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
-import { UserCredentials } from 'modules/auth/sign-in/models';
-import { login } from 'modules/auth/sign-in/services/signIn';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from 'providers/authProvider';
+import { HTTP_STATUS } from 'consts';
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const [credentials, setCredentials] = React.useState<UserCredentials>({
-    email: "",
-    password: ""
-  })
+  const { setCredentials, userData } = useContext(AuthContext)
+  const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     setCredentials({
@@ -27,7 +25,9 @@ export default function SignIn() {
       password: data.get('password') as string,
     });
 
-    login(credentials)
+    if (userData.status === HTTP_STATUS.SUCCESS) {
+      navigate('/home')
+    }
   };
 
   return (
