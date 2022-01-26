@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from 'providers/authProvider';
+import { HTTP_STATUS } from 'consts';
 
 const theme = createTheme();
 
@@ -24,7 +25,7 @@ export default function SignIn() {
       password: data.get('password') as string,
     });
 
-    if (userData.status === 201) {
+    if (userData.status === HTTP_STATUS.SUCCESS) {
       navigate('/home')
     }
   };
