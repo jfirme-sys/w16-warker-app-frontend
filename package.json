@@ -1,6 +1,7 @@
 {
   "name": "w16-waker-app",
   "version": "0.1.0",
+  "proxy": "https://warker-api.herokuapp.com",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -14,9 +15,11 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.24.0",
+    "http-proxy-middleware": "^2.0.2",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.5",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "typescipt": "^1.0.0",
