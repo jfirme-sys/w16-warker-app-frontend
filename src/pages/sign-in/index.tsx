@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -10,24 +10,36 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from 'providers/authProvider';
 import { HTTP_STATUS } from 'consts';
+import { UserCredentials } from 'modules/auth/sign-in/models';
+import { login } from 'modules/auth/sign-in/services/signIn';
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const { setCredentials, userData } = useContext(AuthContext)
+  const { setUserToken } = useContext(AuthContext)
   const navigate = useNavigate();
+  const handleLogin = async (credentials: UserCredentials) => {
+    const response = await login(credentials)
+    console.log(response);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    if (response.status !== HTTP_STATUS.SUCCESS) {
+      console.error("Not authorized");
+      return
+    }
+
+    if (response.status === HTTP_STATUS.SUCCESS) {
+      setUserToken(response.token)
+      navigate('/home')
+    }
+  }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setCredentials({
+    handleLogin({
       email: data.get('email') as string,
       password: data.get('password') as string,
     });
-
-    if (userData.status === HTTP_STATUS.SUCCESS) {
-      navigate('/home')
-    }
   };
 
   return (

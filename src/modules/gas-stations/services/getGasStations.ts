@@ -7,6 +7,8 @@ const getGasStations = async (userToken: string): Promise<any> => {
     }
   })
 
+  console.log(response.data);
+
   return response.data
 }
 
