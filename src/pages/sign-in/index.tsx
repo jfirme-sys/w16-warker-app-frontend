@@ -18,6 +18,16 @@ const theme = createTheme();
 export default function SignIn() {
   const { setUserToken } = useContext(AuthContext)
   const navigate = useNavigate();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    handleLogin({
+      email: data.get('email') as string,
+      password: data.get('password') as string,
+    });
+  };
+
   const handleLogin = async (credentials: UserCredentials) => {
     const response = await login(credentials)
     console.log(response);
@@ -32,15 +42,6 @@ export default function SignIn() {
       navigate('/home')
     }
   }
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    handleLogin({
-      email: data.get('email') as string,
-      password: data.get('password') as string,
-    });
-  };
 
   return (
     <ThemeProvider theme={theme}>
