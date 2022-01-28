@@ -16,14 +16,14 @@ interface GasStations {
 }
 
 const gasStationMock = [{
-  id: '1',
-  reservatorio: '28',
+  id: '',
+  reservatorio: '',
   coords: {
-    latitude: '-38.569450887622466',
-    longitude: '-3.771743500207963'
+    latitude: '',
+    longitude: ''
   },
-  updated_at: '2021-03-04T14:28:16.000000Z',
-  created_at: '2021-03-04T14:28:16.000000Z'
+  updated_at: '',
+  created_at: ''
 }]
 
 const defaultValues = {
@@ -33,13 +33,13 @@ const defaultValues = {
 export const GasStationsContext = createContext(defaultValues);
 
 const GasStationsProvider = (props: any) => {
-  const { userData } = useContext(AuthContext)
+  const { userToken } = useContext(AuthContext)
   const [gasStations, setGasStations] = useState<GasStations[]>(gasStationMock)
 
   useEffect(() => {
     (async () => {
       try {
-        const gasStations = await getGasStations(userData.token)
+        const gasStations = await getGasStations(userToken)
         setGasStations(gasStations)
       } catch (error) {
         console.log(error);
