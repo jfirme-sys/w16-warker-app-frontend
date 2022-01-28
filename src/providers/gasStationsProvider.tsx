@@ -39,8 +39,9 @@ const GasStationsProvider = (props: any) => {
   useEffect(() => {
     (async () => {
       try {
+        setGasStations([])
         const gasStations = await getGasStations(userToken)
-        setGasStations(gasStations)
+        setGasStations(gasStations.data)
       } catch (error) {
         console.log(error);
       }
