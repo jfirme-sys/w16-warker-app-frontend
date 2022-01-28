@@ -18,27 +18,11 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 function MapComponent() {
   const { gasStations } = useContext(GasStationsContext)
-  const { setLoading, loading } = useContext(AuthContext)
-  console.log(gasStations);
 
   const position = [-15.77972, -47.92972] as LatLngExpression
   const [map, setmap] = useState<Map>();
   if (map) {
     map.setView(position);
-  }
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-
-    if (token) {
-      axiosHttpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    }
-
-    setLoading(false)
-  }, [])
-
-  if (loading) {
-    return <h1>Loading...</h1>
   }
 
   return (

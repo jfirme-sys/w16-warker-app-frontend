@@ -9,14 +9,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from 'providers/authProvider';
-import { HTTP_STATUS } from 'consts';
-import { UserCredentials } from 'modules/auth/sign-in/models';
-import { login } from 'modules/auth/sign-in/services/signIn';
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const { setUserToken } = useContext(AuthContext)
+  const { handleLogin } = useContext(AuthContext)
   const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -27,22 +24,6 @@ export default function SignIn() {
       password: data.get('password') as string,
     });
   };
-
-  const handleLogin = async (credentials: UserCredentials) => {
-    const response = await login(credentials)
-    console.log(response);
-
-    if (response.status !== HTTP_STATUS.SUCCESS) {
-      console.error("Not authorized");
-      return
-    }
-
-    if (response.status === HTTP_STATUS.SUCCESS) {
-      setUserToken(response.token)
-      localStorage.setItem('token', JSON.stringify(response.token))
-      navigate('/home')
-    }
-  }
 
   return (
     <ThemeProvider theme={theme}>
