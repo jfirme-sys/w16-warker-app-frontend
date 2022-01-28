@@ -10,6 +10,7 @@ interface DataContext {
   setLoading: (_: SetStateAction<boolean>) => void
   loading: boolean;
   userToken: string;
+  authenticated: boolean;
 }
 
 const defaultValues: DataContext = {
@@ -18,6 +19,7 @@ const defaultValues: DataContext = {
   setLoading: () => { },
   loading: true,
   userToken: "",
+  authenticated: true
 };
 
 export const AuthContext = createContext(defaultValues);
@@ -62,6 +64,7 @@ const AuthProvider = (props: any) => {
         setLoading,
         loading,
         userToken,
+        authenticated
       }}
     >
       {props.children}
