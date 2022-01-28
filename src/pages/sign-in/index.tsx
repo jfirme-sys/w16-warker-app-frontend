@@ -39,6 +39,7 @@ export default function SignIn() {
 
     if (response.status === HTTP_STATUS.SUCCESS) {
       setUserToken(response.token)
+      localStorage.setItem('token', JSON.stringify(response.token))
       navigate('/home')
     }
   }

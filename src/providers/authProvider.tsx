@@ -1,3 +1,4 @@
+import { axiosHttpClient } from "infra/http/axiosHttpClient";
 import { useState, createContext, useEffect, SetStateAction } from "react";
 
 interface DataContext {
@@ -19,7 +20,6 @@ export const AuthContext = createContext(defaultValues);
 const AuthProvider = (props: any) => {
   const [userToken, setUserToken] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(true)
-
 
   return (
     <AuthContext.Provider
