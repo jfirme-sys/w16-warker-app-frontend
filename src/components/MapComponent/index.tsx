@@ -4,8 +4,6 @@ import L, { LatLngExpression, Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import './map.css'
 import { GasStationsContext } from 'providers/gasStationsProvider';
-import { axiosHttpClient } from 'infra/http/axiosHttpClient';
-import { AuthContext } from 'providers/authProvider';
 const icon = require('assets/marker-icon.png');
 const iconShadow = require('assets/marker-shadow.png');
 

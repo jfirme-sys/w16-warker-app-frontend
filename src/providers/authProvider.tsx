@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 interface DataContext {
   setUserToken: (_: SetStateAction<string>) => void;
   handleLogin: (credentials: UserCredentials) => void;
+  handleLogout: () => void;
   setLoading: (_: SetStateAction<boolean>) => void
   loading: boolean;
   userToken: string;
@@ -16,6 +17,7 @@ interface DataContext {
 const defaultValues: DataContext = {
   setUserToken: () => { },
   handleLogin: (credentials: UserCredentials) => { },
+  handleLogout: () => { },
   setLoading: () => { },
   loading: true,
   userToken: "",
@@ -51,6 +53,13 @@ const AuthProvider = (props: any) => {
     navigate('/home')
   }
 
+  const handleLogout = async () => {
+    localStorage.removeItem('token')
+    axiosHttpClient.defaults.headers.common['Authorization'] = ``
+    setAuthenticated(false)
+    navigate('/')
+  }
+
   if (loading) {
     return <h1>Loading...</h1>
   }
@@ -61,6 +70,7 @@ const AuthProvider = (props: any) => {
       value={{
         setUserToken,
         handleLogin,
+        handleLogout,
         setLoading,
         loading,
         userToken,
