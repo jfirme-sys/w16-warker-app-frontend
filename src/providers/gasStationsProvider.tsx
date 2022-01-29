@@ -1,3 +1,4 @@
+import { axiosHttpClient } from "infra/http/axiosHttpClient";
 import { getGasStations } from "modules/gas-stations/services/getGasStations";
 import { useState, createContext, useEffect, useContext } from "react";
 import { AuthContext } from "./authProvider";
@@ -33,7 +34,7 @@ const defaultValues = {
 export const GasStationsContext = createContext(defaultValues);
 
 const GasStationsProvider = (props: any) => {
-  const { userToken } = useContext(AuthContext)
+  const { userToken, setLoading, loading } = useContext(AuthContext)
   const [gasStations, setGasStations] = useState<GasStations[]>(gasStationMock)
 
   useEffect(() => {
