@@ -25,7 +25,7 @@ function MapComponent() {
 
   return (
     <>
-      <MapContainer center={position} zoom={4} scrollWheelZoom={true} whenCreated={setmap}>
+      <MapContainer center={position} zoom={4.5} scrollWheelZoom={true} whenCreated={setmap}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -33,8 +33,8 @@ function MapComponent() {
 
         {
           gasStations.map((station) => {
-            const lat = parseFloat(station.coords.latitude)
-            const long = parseFloat(station.coords.longitude)
+            const long = parseFloat(station.coords.latitude)
+            const lat = parseFloat(station.coords.longitude)
 
             console.log([lat, long]);
 
@@ -42,6 +42,7 @@ function MapComponent() {
               <Marker
                 key={station.id}
                 position={[lat, long] as LatLngExpression} />
+
             )
           })
         }
