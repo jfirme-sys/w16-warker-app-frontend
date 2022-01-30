@@ -35,6 +35,7 @@ function MapComponent() {
           gasStations.map((station) => {
             const long = parseFloat(station.coords.latitude)
             const lat = parseFloat(station.coords.longitude)
+            // As coordenadas estão vindo invertidas da API
 
             return (
               <Marker
