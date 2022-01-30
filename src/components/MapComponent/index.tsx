@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L, { LatLngExpression, Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
@@ -25,7 +25,7 @@ function MapComponent() {
 
   return (
     <>
-      <MapContainer center={position} zoom={4.5} scrollWheelZoom={true} whenCreated={setmap}>
+      <MapContainer data-testid="map-component" center={position} zoom={4.5} scrollWheelZoom={true} whenCreated={setmap}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -35,8 +35,6 @@ function MapComponent() {
           gasStations.map((station) => {
             const long = parseFloat(station.coords.latitude)
             const lat = parseFloat(station.coords.longitude)
-
-            console.log([lat, long]);
 
             return (
               <Marker
