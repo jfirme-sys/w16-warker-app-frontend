@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { axiosHttpClient } from 'infra/http/axiosHttpClient';
 import { UserCredentials, UserLoginResponse } from '../models';
 
